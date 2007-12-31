@@ -1,6 +1,6 @@
 Name:           keepassx
 Version:        0.2.2
-Release:        %mkrel 1
+Release:        %mkrel 2
 Epoch:          0
 Summary:        Cross Platform Password Manager
 License:        GPL
@@ -14,6 +14,7 @@ Requires(post):  desktop-file-utils
 Requires(postun):  desktop-file-utils
 BuildRequires:  desktop-file-utils
 BuildRequires:  imagemagick
+BuildRequires:  libxtst-devel
 BuildRequires:  qt4-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
