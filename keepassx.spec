@@ -1,6 +1,6 @@
 Name:           keepassx
 Version:        0.2.2
-Release:        %mkrel 2
+Release:        %mkrel 3
 Epoch:          0
 Summary:        Cross Platform Password Manager
 License:        GPL
@@ -59,6 +59,7 @@ currently known (AES and Twofish).
 
 %files
 %defattr(0644,root,root,0755)
+%doc changelog keepass.spec
 %attr(0755,root,root) %{_bindir}/keepass
 %{_datadir}/keepass
 %{_datadir}/applications/%{name}.desktop
