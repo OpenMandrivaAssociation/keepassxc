@@ -1,6 +1,6 @@
 Name:           keepassx
 Version:        0.2.2
-Release:        %mkrel 4
+Release:        %mkrel 5
 Epoch:          0
 Summary:        Cross Platform Password Manager
 License:        GPL
