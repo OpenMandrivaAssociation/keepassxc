@@ -1,14 +1,15 @@
 Name:           keepassx
-Version:        0.2.2
-Release:        %mkrel 5
+Version:        0.3.1
+Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross Platform Password Manager
 License:        GPL
 Group:          File tools
 URL:            http://keepassx.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/sourceforge/keepassx/KeePassX-%{version}.tar.gz
-Source1:        %{name}.desktop
-Source2:        %{name}-x-keepass.desktop
+Source1:        http://www.keepassx.org/download/md5/KeePassX-%{version}.tar.gz.txt
+Source2:        %{name}.desktop
+Source3:        %{name}-x-keepass.desktop
 Provides:       keepass = %{epoch}%{version}-%{release}
 Provides:       KeePassX = %{epoch}%{version}-%{release}
 Requires(post):  desktop-file-utils
@@ -29,7 +30,7 @@ encrypted using the best and most secure encryption algorithms
 currently known (AES and Twofish).
 
 %prep
-%setup -q
+%setup -q -n KeePassX-%{version}
 
 %build
 %{qt4dir}/bin/qmake
@@ -45,17 +46,17 @@ currently known (AES and Twofish).
 %{__mkdir_p} %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
 %{__mkdir_p} %{buildroot}%{_datadir}/icons/hicolor/64x64/apps
 
-%{_bindir}/convert -scale 32 share/keepass/icons/keepassx.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
-%{__cp} -a share/keepass/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-%{_bindir}/convert -scale 32 share/keepass/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{_bindir}/convert -scale 64 share/keepass/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
+%{_bindir}/convert -scale 32 share/keepassx/icons/keepassx.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{_bindir}/convert -scale 16 share/keepassx/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+%{_bindir}/convert -scale 32 share/keepassx/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%{_bindir}/convert -scale 64 share/keepassx/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 %{_bindir}/desktop-file-install --vendor "" \
         --dir %{buildroot}%{_datadir}/applications \
-        %{SOURCE1}
+        %{SOURCE2}
 
-%{__install} -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/mimelnk/application/x-keepass.desktop
+%{__install} -D -m 644 -p %{SOURCE3} %{buildroot}%{_datadir}/mimelnk/application/x-keepass.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -72,10 +73,11 @@ currently known (AES and Twofish).
 %files
 %defattr(0644,root,root,0755)
 %doc changelog keepass.spec
-%attr(0755,root,root) %{_bindir}/keepass
-%{_datadir}/keepass
+%attr(0755,root,root) %{_bindir}/keepassx
+%{_datadir}/keepassx
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
+%{_datadir}/pixmaps/keepassx.xpm
 %{_datadir}/icons/hicolor/16x16/apps/%{name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/64x64/apps/%{name}.png
