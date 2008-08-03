@@ -1,5 +1,5 @@
 Name:           keepassx
-Version:        0.3.1
+Version:        0.3.2
 Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross Platform Password Manager
@@ -7,9 +7,8 @@ License:        GPL
 Group:          File tools
 URL:            http://keepassx.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/sourceforge/keepassx/KeePassX-%{version}.tar.gz
-Source1:        http://www.keepassx.org/download/md5/KeePassX-%{version}.tar.gz.txt
-Source2:        %{name}.desktop
-Source3:        %{name}-x-keepass.desktop
+Source1:        %{name}.desktop
+Source2:        %{name}-x-keepass.desktop
 Provides:       keepass = %{epoch}%{version}-%{release}
 Provides:       KeePassX = %{epoch}%{version}-%{release}
 Requires(post):  desktop-file-utils
@@ -30,7 +29,7 @@ encrypted using the best and most secure encryption algorithms
 currently known (AES and Twofish).
 
 %prep
-%setup -q -n KeePassX-%{version}
+%setup -q
 
 %build
 %{qt4dir}/bin/qmake
@@ -54,9 +53,9 @@ currently known (AES and Twofish).
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 %{_bindir}/desktop-file-install --vendor "" \
         --dir %{buildroot}%{_datadir}/applications \
-        %{SOURCE2}
+        %{SOURCE1}
 
-%{__install} -D -m 644 -p %{SOURCE3} %{buildroot}%{_datadir}/mimelnk/application/x-keepass.desktop
+%{__install} -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/mimelnk/application/x-keepass.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
