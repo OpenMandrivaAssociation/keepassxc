@@ -1,12 +1,12 @@
 Name:           keepassx
-Version:        0.3.3
+Version:        0.3.4
 Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross Platform Password Manager
 License:        GPL
 Group:          File tools
 URL:            http://keepassx.sourceforge.net/
-Source0:        http://downloads.sourceforge.net/keepassx/KeePassX-0.3.3.tar.gz
+Source0:        http://downloads.sourceforge.net/keepassx/KeePassX-%{version}.tar.gz
 Source1:        %{name}.desktop
 Source2:        %{name}-x-keepass.desktop
 Provides:       keepass = %{epoch}%{version}-%{release}
