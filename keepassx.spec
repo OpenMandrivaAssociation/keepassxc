@@ -1,14 +1,13 @@
 Name:           keepassx
-Version:        0.3.4
-Release:        %mkrel 2
+Version:        0.4.1
+Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross Platform Password Manager
-License:        GPL
+License:        GPLv2+
 Group:          File tools
-URL:            http://keepassx.sourceforge.net/
-Source0:        http://downloads.sourceforge.net/keepassx/KeePassX-%{version}.tar.gz
+URL:            http://www.keepassx.org/
+Source0:        http://downloads.sourceforge.net/keepassx/keepassx-%{version}.tar.gz
 Source1:        %{name}.desktop
-Source2:        %{name}-x-keepass.desktop
 Provides:       keepass = %{epoch}%{version}-%{release}
 Provides:       KeePassX = %{epoch}%{version}-%{release}
 Requires(post):  desktop-file-utils
@@ -37,7 +36,6 @@ currently known (AES and Twofish).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__perl} -pi -e 's|/usr/local|%{_prefix}|g' src/Makefile
 %{makeinstall_std} INSTALL_ROOT=%{buildroot}
 
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
@@ -55,8 +53,6 @@ currently known (AES and Twofish).
         --dir %{buildroot}%{_datadir}/applications \
         %{SOURCE1}
 
-%{__install} -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/mimelnk/application/x-keepass.desktop
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -68,10 +64,11 @@ currently known (AES and Twofish).
 %postun
 %{clean_desktop_database}
 %clean_icon_cache hicolor
+%{clean_mime_database}
 
 %files
 %defattr(0644,root,root,0755)
-%doc changelog keepass.spec
+%doc changelog
 %attr(0755,root,root) %{_bindir}/keepassx
 %{_datadir}/keepassx
 %{_datadir}/applications/%{name}.desktop
@@ -80,4 +77,5 @@ currently known (AES and Twofish).
 %{_datadir}/icons/hicolor/16x16/apps/%{name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/64x64/apps/%{name}.png
+%{_datadir}/mime/packages/keepassx.xml
 %{_datadir}/mimelnk/application/x-keepass.desktop
