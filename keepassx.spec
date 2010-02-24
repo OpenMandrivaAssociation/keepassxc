@@ -1,12 +1,14 @@
+%define prerel beta
+
 Name:           keepassx
-Version:        0.4.1
-Release:        %mkrel 1
+Version:        0.4.2
+Release:        %mkrel -c %prerel 1
 Epoch:          0
 Summary:        Cross Platform Password Manager
 License:        GPLv2+
 Group:          File tools
 URL:            http://www.keepassx.org/
-Source0:        http://downloads.sourceforge.net/keepassx/keepassx-%{version}.tar.gz
+Source0:        http://downloads.sourceforge.net/keepassx/keepassx-%{version}%{prerel}.tar.gz
 Source1:        %{name}.desktop
 Provides:       keepass = %{epoch}%{version}-%{release}
 Provides:       KeePassX = %{epoch}%{version}-%{release}
@@ -28,7 +30,7 @@ encrypted using the best and most secure encryption algorithms
 currently known (AES and Twofish).
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{prerel}
 
 %build
 %{qt4dir}/bin/qmake
