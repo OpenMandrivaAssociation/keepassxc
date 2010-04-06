@@ -1,19 +1,18 @@
+Summary:	Cross Platform Password Manager
 Name:		keepassx
 Version:	0.4.3
 Release:	%mkrel 1
-Summary:	Cross Platform Password Manager
+Source0:	http://downloads.sourceforge.net/keepassx/keepassx-%{version}.tar.gz
 License:	GPLv2+
 Group:		File tools
 URL:		http://www.keepassx.org/
-Source0:	http://downloads.sourceforge.net/keepassx/keepassx-%{version}.tar.gz
-Provides:	keepass = %{epoch}%{version}-%{release}
-Provides:	KeePassX = %{epoch}%{version}-%{release}
-Requires(post):	desktop-file-utils
-Requires(postun): desktop-file-utils
 BuildRequires:	desktop-file-utils
 BuildRequires:	imagemagick
 BuildRequires:	libxtst-devel
 BuildRequires:	qt4-devel
+BuildRequires:	desktop-file-utils
+Provides:	keepass = %{version}-%{release}
+Provides:	KeePassX = %{version}-%{release}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
