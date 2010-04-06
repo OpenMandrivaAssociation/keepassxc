@@ -1,24 +1,20 @@
-%define prerel beta
-
-Name:           keepassx
-Version:        0.4.2
-Release:        %mkrel -c %prerel 1
-Epoch:          0
-Summary:        Cross Platform Password Manager
-License:        GPLv2+
-Group:          File tools
-URL:            http://www.keepassx.org/
-Source0:        http://downloads.sourceforge.net/keepassx/keepassx-%{version}%{prerel}.tar.gz
-Source1:        %{name}.desktop
-Provides:       keepass = %{epoch}%{version}-%{release}
-Provides:       KeePassX = %{epoch}%{version}-%{release}
-Requires(post):  desktop-file-utils
-Requires(postun):  desktop-file-utils
-BuildRequires:  desktop-file-utils
-BuildRequires:  imagemagick
-BuildRequires:  libxtst-devel
-BuildRequires:  qt4-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+Name:		keepassx
+Version:	0.4.3
+Release:	%mkrel 1
+Summary:	Cross Platform Password Manager
+License:	GPLv2+
+Group:		File tools
+URL:		http://www.keepassx.org/
+Source0:	http://downloads.sourceforge.net/keepassx/keepassx-%{version}.tar.gz
+Provides:	keepass = %{epoch}%{version}-%{release}
+Provides:	KeePassX = %{epoch}%{version}-%{release}
+Requires(post):	desktop-file-utils
+Requires(postun): desktop-file-utils
+BuildRequires:	desktop-file-utils
+BuildRequires:	imagemagick
+BuildRequires:	libxtst-devel
+BuildRequires:	qt4-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 KeePassX is a free/open-source password manager or safe which helps
@@ -30,54 +26,39 @@ encrypted using the best and most secure encryption algorithms
 currently known (AES and Twofish).
 
 %prep
-%setup -q -n %{name}-%{version}%{prerel}
+%setup -q
 
 %build
-%{qt4dir}/bin/qmake
-%{make}
+%qmake_qt4 PREFIX=%{_prefix}
+%make
 
 %install
-%{__rm} -rf %{buildroot}
-%{makeinstall_std} INSTALL_ROOT=%{buildroot}
+rm -rf %{buildroot}
+%makeinstall_std INSTALL_ROOT=%{buildroot}
 
-%{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
-%{__mkdir_p} %{buildroot}%{_datadir}/icons/hicolor/16x16/apps
-%{__mkdir_p} %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
-%{__mkdir_p} %{buildroot}%{_datadir}/icons/hicolor/64x64/apps
+install -D -m 644 share/keepassx/icons/keepassx_large.png	%{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+install -D -m 644 share/keepassx/icons/keepassx.png		%{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -D -m 644 share/keepassx/icons/keepassx_small.png	%{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 
-%{_bindir}/convert -scale 32 share/keepassx/icons/keepassx.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
-%{_bindir}/convert -scale 16 share/keepassx/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-%{_bindir}/convert -scale 32 share/keepassx/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{_bindir}/convert -scale 64 share/keepassx/icons/keepassx.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
-
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-%{_bindir}/desktop-file-install --vendor "" \
-        --dir %{buildroot}%{_datadir}/applications \
-        %{SOURCE1}
+# fix .desktop file
+desktop-file-install --vendor="mandriva" \
+		--add-category="System" \
+		--remove-key="X-SuSE-translate" \
+		--delete-original \
+		--dir=%{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %clean
-%{__rm} -rf %{buildroot}
-
-%post
-%{update_desktop_database}
-%update_icon_cache hicolor
-%{update_mime_database}
-
-%postun
-%{clean_desktop_database}
-%clean_icon_cache hicolor
-%{clean_mime_database}
+rm -rf %{buildroot}
 
 %files
-%defattr(0644,root,root,0755)
+%defattr(-,root,root,-)
 %doc changelog
-%attr(0755,root,root) %{_bindir}/keepassx
-%{_datadir}/keepassx
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
-%{_datadir}/pixmaps/keepassx.xpm
-%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
-%{_datadir}/mime/packages/keepassx.xml
+%{_bindir}/%{name}
+%{_datadir}/%{name}
+%{_datadir}/applications/mandriva-%{name}.desktop
+%{_datadir}/pixmaps/%{name}.xpm
+%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+%{_datadir}/mime/packages/%{name}.xml
 %{_datadir}/mimelnk/application/x-keepass.desktop
