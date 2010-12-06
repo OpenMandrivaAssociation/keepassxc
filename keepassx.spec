@@ -1,7 +1,7 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassx
 Version:	0.4.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 Source0:	http://downloads.sourceforge.net/keepassx/keepassx-%{version}.tar.gz
 License:	GPLv2+
 Group:		File tools
