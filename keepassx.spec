@@ -29,6 +29,9 @@ currently known (AES and Twofish).
 %apply_patches
 
 %build
+export CC=gcc
+export CXX=g++
+
 %qmake_qt4 PREFIX=%{_prefix}
 %make
 
