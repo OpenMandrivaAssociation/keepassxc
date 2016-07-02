@@ -29,8 +29,10 @@ currently known (AES and Twofish).
 %apply_patches
 
 %build
-%qmake_qt4 PREFIX=%{_prefix}
-%make
+export CC=gcc
+export CXX=g++
+qmake PREFIX=%{_prefix}
+make
 
 %install
 rm -rf %{buildroot}
