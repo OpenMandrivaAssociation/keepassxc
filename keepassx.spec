@@ -7,11 +7,9 @@ License:	GPLv2+
 Group:		File tools
 URL:		http://www.keepassx.org/
 BuildRequires:	cmake
-BuildRequires:	desktop-file-utils
-BuildRequires:	libxi-devel
-BuildRequires:	libxtst-devel
+BuildRequires:	pkgconfig(xi)
+BuildRequires:	pkgconfig(xtst)
 BuildRequires:	qt4-devel >= 4.3.0
-BuildRequires:	desktop-file-utils
 Provides:	keepass = %{version}-%{release}
 Provides:	KeePassX = %{version}-%{release}
 
@@ -33,28 +31,16 @@ currently known (AES and Twofish).
 %make
 
 %install
-%makeinstall_std
-
-install -D -m 644 share/keepassx/icons/keepassx_large.png	%{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
-install -D -m 644 share/keepassx/icons/keepassx.png		%{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-install -D -m 644 share/keepassx/icons/keepassx_small.png	%{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-
-# fix .desktop file
-desktop-file-install --vendor="mandriva" \
-		--add-category="System" \
-		--remove-key="X-SuSE-translate" \
-		--delete-original \
-		--dir=%{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/%{name}.desktop
-
+%makeinstall_std -C build
 
 %files
-%doc changelog
+%doc CHANGELOG
 %{_bindir}/%{name}
-%{_datadir}/%{name}
-%{_datadir}/applications/mandriva-%{name}.desktop
-%{_datadir}/pixmaps/%{name}.xpm
-%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+%{_libdir}/%{name}/
+%{_datadir}/%{name}/
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/mime/packages/%{name}.xml
-%{_datadir}/mimelnk/application/x-keepass.desktop
+%{_iconsdir}/hicolor/*/apps/%{name}.*
+%{_iconsdir}/hicolor/*/mimetypes/*.png
+%{_datadir}/mime/packages/%{name}.xml
+
