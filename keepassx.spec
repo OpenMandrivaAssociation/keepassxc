@@ -1,12 +1,13 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassx
-Version:	0.4.4
+Version:	2.0.2
 Release:	1
 Source0:	https://www.keepassx.org/releases/%{version}/keepassx-%{version}.tar.gz
 Patch0:		keepassx-0.4.3-fix-getpid-undef.patch
 License:	GPLv2+
 Group:		File tools
 URL:		http://www.keepassx.org/
+BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
 BuildRequires:	libxi-devel
 BuildRequires:	libxtst-devel
@@ -29,13 +30,10 @@ currently known (AES and Twofish).
 %apply_patches
 
 %build
-export CC=gcc
-export CXX=g++
-qmake PREFIX=%{_prefix}
-make
+%cmake_qt4
+%make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std INSTALL_ROOT=%{buildroot}
 
 install -D -m 644 share/keepassx/icons/keepassx_large.png	%{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
