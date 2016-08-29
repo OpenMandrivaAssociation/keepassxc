@@ -33,7 +33,7 @@ currently known (AES and Twofish).
 %make
 
 %install
-%makeinstall_std INSTALL_ROOT=%{buildroot}
+%makeinstall_std
 
 install -D -m 644 share/keepassx/icons/keepassx_large.png	%{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
 install -D -m 644 share/keepassx/icons/keepassx.png		%{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
