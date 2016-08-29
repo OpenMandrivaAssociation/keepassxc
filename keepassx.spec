@@ -3,7 +3,6 @@ Name:		keepassx
 Version:	2.0.2
 Release:	1
 Source0:	https://www.keepassx.org/releases/%{version}/keepassx-%{version}.tar.gz
-Patch0:		keepassx-0.4.3-fix-getpid-undef.patch
 License:	GPLv2+
 Group:		File tools
 URL:		http://www.keepassx.org/
