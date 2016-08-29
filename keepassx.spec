@@ -42,5 +42,4 @@ currently known (AES and Twofish).
 %{_datadir}/mime/packages/%{name}.xml
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_iconsdir}/hicolor/*/mimetypes/*.png
-%{_datadir}/mime/packages/%{name}.xml
 
