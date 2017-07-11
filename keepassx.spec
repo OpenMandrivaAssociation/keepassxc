@@ -1,15 +1,28 @@
+%define pre 20170711
+
 Summary:	Cross Platform Password Manager
 Name:		keepassx
-Version:	2.0.2
+Version:	2.0.4
+%if 0%{?pre}
+Release:	0.%{pre}.1
+Source0:	https://github.com/keepassx/keepassx/archive/master.tar.gz
+%else
 Release:	1
 Source0:	https://www.keepassx.org/releases/%{version}/keepassx-%{version}.tar.gz
+%endif
+Patch0:		keepassx-compile.patch
 License:	GPLv2+
 Group:		File tools
 URL:		http://www.keepassx.org/
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(xi)
 BuildRequires:	pkgconfig(xtst)
-BuildRequires:	qt4-devel >= 4.3.0
+BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5Concurrent)
+BuildRequires:	cmake(Qt5Widgets)
+BuildRequires:	cmake(Qt5Test)
+BuildRequires:	cmake(Qt5LinguistTools)
+BuildRequires:	cmake(Qt5X11Extras)
 Provides:	keepass = %{version}-%{release}
 Provides:	KeePassX = %{version}-%{release}
 
@@ -23,11 +36,15 @@ encrypted using the best and most secure encryption algorithms
 currently known (AES and Twofish).
 
 %prep
+%if 0%{?pre}
+%setup -qn %{name}-master
+%else
 %setup -q
+%endif
 %apply_patches
 
 %build
-%cmake_qt4
+%cmake_qt5
 %make
 
 %install
