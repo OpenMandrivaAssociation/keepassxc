@@ -17,6 +17,7 @@ URL:		http://www.keepassx.org/
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(xi)
 BuildRequires:	pkgconfig(xtst)
+BuildRequires:	qt5-macros
 BuildRequires:	cmake(Qt5Core)
 BuildRequires:	cmake(Qt5Concurrent)
 BuildRequires:	cmake(Qt5Widgets)
