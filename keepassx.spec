@@ -1,4 +1,4 @@
-%define pre 20170711
+%define pre 20190923
 
 Summary:	Cross Platform Password Manager
 Name:		keepassx
@@ -10,7 +10,6 @@ Source0:	https://github.com/keepassx/keepassx/archive/master.tar.gz
 Release:	1
 Source0:	https://www.keepassx.org/releases/%{version}/keepassx-%{version}.tar.gz
 %endif
-Patch0:		keepassx-compile.patch
 License:	GPLv2+
 Group:		File tools
 URL:		http://www.keepassx.org/
@@ -18,6 +17,7 @@ BuildRequires:	cmake
 BuildRequires:	pkgconfig(xi)
 BuildRequires:	pkgconfig(xtst)
 BuildRequires:	qt5-macros
+BuildRequires:	qmake5
 BuildRequires:	cmake(Qt5Core)
 BuildRequires:	cmake(Qt5Concurrent)
 BuildRequires:	cmake(Qt5Widgets)
