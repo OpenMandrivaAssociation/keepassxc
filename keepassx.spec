@@ -25,6 +25,7 @@ BuildRequires:	cmake(Qt5Test)
 BuildRequires:	cmake(Qt5LinguistTools)
 BuildRequires:	cmake(Qt5X11Extras)
 BuildRequires:	pkgconfig(libgcrypt)
+BuildRequires:	pkgconfig(zlib)
 Provides:	keepass = %{version}-%{release}
 Provides:	KeePassX = %{version}-%{release}
 
