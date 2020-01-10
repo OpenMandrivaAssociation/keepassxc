@@ -44,7 +44,7 @@ currently known (AES and Twofish).
 %else
 %setup -q
 %endif
-%apply_patches
+%autopatch -p1
 
 %build
 %cmake_qt5
