@@ -19,6 +19,10 @@ BuildRequires:	qt5-macros
 BuildRequires:	qmake5
 BuildRequires:	cmake(Qt5Core)
 BuildRequires:	cmake(Qt5Concurrent)
+BuildRequires:	cmake(Qt5DBus)
+BuildRequires:	cmake(Qt5Gui)
+BuildRequires:	cmake(Qt5Network)
+BuildRequires:	cmake(Qt5Svg)
 BuildRequires:	cmake(Qt5Widgets)
 BuildRequires:	cmake(Qt5Test)
 BuildRequires:	cmake(Qt5LinguistTools)
@@ -26,6 +30,9 @@ BuildRequires:	cmake(Qt5X11Extras)
 BuildRequires:	pkgconfig(libgcrypt)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(quazip)
+BuildRequires:	pkgconfig(libargon2)
+BuildRequires:	pkgconfig(libqrencode)
+BuildRequires:	pkgconfig(libsodium)
 Provides:	keepass = %{version}-%{release}
 Provides:	KeePassX = %{version}-%{release}
 Provides:	KeePassXC = %{version}-%{release}
