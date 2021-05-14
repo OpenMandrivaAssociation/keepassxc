@@ -36,6 +36,7 @@ BuildRequires:	cmake(QuaZip-Qt5)
 BuildRequires:	pkgconfig(libargon2)
 BuildRequires:	pkgconfig(libqrencode)
 BuildRequires:	pkgconfig(libsodium)
+BuildRequires:	asciidoctor
 Provides:	keepass = %{version}-%{release}
 Provides:	KeePassX = %{version}-%{release}
 Provides:	KeePassXC = %{version}-%{release}
