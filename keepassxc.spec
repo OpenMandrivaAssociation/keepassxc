@@ -17,6 +17,7 @@ URL:		http://www.keepassxc.org/
 BuildRequires:	cmake ninja
 BuildRequires:	pkgconfig(xi)
 BuildRequires:	pkgconfig(xtst)
+BuildRequires:	pkgconfig(readline)
 BuildRequires:	qt5-macros
 BuildRequires:	qmake5
 BuildRequires:	cmake(Qt5Core)
