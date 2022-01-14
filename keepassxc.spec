@@ -1,6 +1,6 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassxc
-Version:	2.6.4
+Version:	2.6.6
 %if 0%{?beta}
 Release:	0.%{beta}.1
 Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{version}-%{beta}.tar.gz
@@ -9,7 +9,6 @@ Release:	1
 Source0:	https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
 %endif
 Patch0:		keepassxc-2.6.4-quazip-1.1.patch
-Patch1:		keepassxc-2.6.4-find-quazip-1.1.patch
 License:	GPLv2+
 Group:		File tools
 # Forked from dormant http://www.keepassx.org/

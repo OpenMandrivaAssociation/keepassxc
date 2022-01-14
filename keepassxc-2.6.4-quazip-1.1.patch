@@ -1,12 +1,23 @@
-diff -up keepassxc-2.6.4/src/keeshare/CMakeLists.txt.omv~ keepassxc-2.6.4/src/keeshare/CMakeLists.txt
---- keepassxc-2.6.4/src/keeshare/CMakeLists.txt.omv~	2021-05-14 05:08:28.510963342 +0200
-+++ keepassxc-2.6.4/src/keeshare/CMakeLists.txt	2021-05-14 05:08:45.948364403 +0200
-@@ -22,7 +22,7 @@ if(WITH_XC_KEESHARE)
+diff -up keepassxc-2.6.6/src/keeshare/CMakeLists.txt.1~ keepassxc-2.6.6/src/keeshare/CMakeLists.txt
+--- keepassxc-2.6.6/src/keeshare/CMakeLists.txt.1~	2021-06-12 04:13:52.000000000 +0200
++++ keepassxc-2.6.6/src/keeshare/CMakeLists.txt	2022-01-14 17:56:05.224025577 +0100
+@@ -22,15 +22,10 @@ if(WITH_XC_KEESHARE)
      target_link_libraries(keeshare PUBLIC Qt5::Core Qt5::Widgets ${GCRYPT_LIBRARIES} ${crypto_ssh_LIB})
  
      # Try to find libquazip5, if found, enable secure sharing
 -    find_package(QuaZip)
-+    find_package(QuaZip-Qt5)
-     if(QUAZIP_FOUND)
-         set(WITH_XC_KEESHARE_SECURE ON PARENT_SCOPE)
-         target_include_directories(keeshare SYSTEM PRIVATE ${QUAZIP_INCLUDE_DIR})
+-    if(QUAZIP_FOUND)
+-        set(WITH_XC_KEESHARE_SECURE ON PARENT_SCOPE)
+-        target_include_directories(keeshare SYSTEM PRIVATE ${QUAZIP_INCLUDE_DIRS})
+-        target_link_libraries(keeshare PRIVATE ${QUAZIP_LIBRARIES})
+-    else()
+-        set(WITH_XC_KEESHARE_SECURE OFF PARENT_SCOPE)
+-        message(STATUS "KeeShare: Secure container support is DISABLED; quazip library not found")
+-    endif()
++    find_package(QuaZip-Qt5 REQUIRED)
++    set(WITH_XC_KEESHARE_SECURE ON PARENT_SCOPE)
++    target_include_directories(keeshare SYSTEM PRIVATE ${QUAZIP_INCLUDE_DIR})
++    target_link_libraries(keeshare PRIVATE QuaZip::QuaZip)
+ else(WITH_XC_KEESHARE)
+     set(WITH_XC_KEESHARE_INSECURE OFF PARENT_SCOPE)
+     set(WITH_XC_KEESHARE_SECURE OFF PARENT_SCOPE)
