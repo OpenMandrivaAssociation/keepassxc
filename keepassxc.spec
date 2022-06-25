@@ -1,6 +1,6 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassxc
-Version:	2.6.6
+Version:	2.7.1
 %if 0%{?beta}
 Release:	0.%{beta}.1
 Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{version}-%{beta}.tar.gz
@@ -8,7 +8,6 @@ Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{ve
 Release:	1
 Source0:	https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
 %endif
-Patch0:		keepassxc-2.6.4-quazip-1.1.patch
 License:	GPLv2+
 Group:		File tools
 # Forked from dormant http://www.keepassx.org/
@@ -31,7 +30,7 @@ BuildRequires:	cmake(Qt5LinguistTools)
 BuildRequires:	cmake(Qt5X11Extras)
 BuildRequires:	pkgconfig(libgcrypt)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	cmake(QuaZip-Qt5)
+BuildRequires:	pkgconfig(minizip)
 BuildRequires:	pkgconfig(libargon2)
 BuildRequires:	pkgconfig(libqrencode)
 BuildRequires:	pkgconfig(libsodium)
@@ -63,9 +62,6 @@ Command Line interface to the KeePassXC password manager
 %else
 %autosetup -p1
 %endif
-# We want the system quazip detector
-rm cmake/FindQuaZip.cmake
-
 %cmake_qt5 -G Ninja \
 	-DKEEPASSXC_BUILD_TYPE=Release \
 	-DWITH_XC_AUTOTYPE:BOOL=ON \
