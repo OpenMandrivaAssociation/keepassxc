@@ -5,7 +5,7 @@ Version:	2.7.1
 Release:	0.%{beta}.1
 Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{version}-%{beta}.tar.gz
 %else
-Release:	1
+Release:	2
 Source0:	https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
 %endif
 License:	GPLv2+
