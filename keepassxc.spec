@@ -34,6 +34,7 @@ BuildRequires:	pkgconfig(minizip)
 BuildRequires:	pkgconfig(libargon2)
 BuildRequires:	pkgconfig(libqrencode)
 BuildRequires:	pkgconfig(libsodium)
+BuildRequires:	pkgconfig(botan-2)
 BuildRequires:	asciidoctor
 Provides:	keepass = %{version}-%{release}
 Provides:	KeePassX = %{version}-%{release}
