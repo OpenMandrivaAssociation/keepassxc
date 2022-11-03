@@ -1,6 +1,6 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassxc
-Version:	2.7.3
+Version:	2.7.4
 %if 0%{?beta}
 Release:	0.%{beta}.1
 Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{version}-%{beta}.tar.gz
