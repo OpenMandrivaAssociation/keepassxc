@@ -1,13 +1,13 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassxc
-Version:	2.7.6
-%if 0%{?beta}
-Release:	0.%{beta}.1
-Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{version}-%{beta}.tar.gz
-%else
-Release:	2
+Version:	2.7.7
+%if ! 0%{?beta:1}
 Source0:	https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
+%else
+Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{version}-%{beta}.tar.gz
 %endif
+Release:	%{?beta:0.%{beta}.}1
+Patch0:		keepassxc-2.7.7-minizip-ng.patch
 License:	GPLv2+
 Group:		File tools
 # Forked from dormant http://www.keepassx.org/

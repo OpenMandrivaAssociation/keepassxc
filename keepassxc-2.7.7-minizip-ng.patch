@@ -1,0 +1,12 @@
+diff -up keepassxc-2.7.7/src/format/OPUXReader.cpp.omv~ keepassxc-2.7.7/src/format/OPUXReader.cpp
+--- keepassxc-2.7.7/src/format/OPUXReader.cpp.omv~	2024-03-11 17:09:49.271464923 +0100
++++ keepassxc-2.7.7/src/format/OPUXReader.cpp	2024-03-11 17:12:52.541585785 +0100
+@@ -36,7 +36,7 @@ namespace
+ {
+     QByteArray extractFile(unzFile uf, QString filename)
+     {
+-        if (unzLocateFile(uf, filename.toLatin1(), 2) != UNZ_OK) {
++        if (unzLocateFile(uf, filename.toLatin1(), reinterpret_cast<unzFileNameComparer>(2)) != UNZ_OK) {
+             qWarning("Failed to extract 1PUX document: %s", qPrintable(filename));
+             return {};
+         }
