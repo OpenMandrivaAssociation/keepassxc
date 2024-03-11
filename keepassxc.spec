@@ -7,7 +7,6 @@ Source0:	https://github.com/keepassxreboot/keepassxc/releases/download/%{version
 Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{version}-%{beta}.tar.gz
 %endif
 Release:	%{?beta:0.%{beta}.}1
-Patch0:		keepassxc-2.7.7-minizip-ng.patch
 License:	GPLv2+
 Group:		File tools
 # Forked from dormant http://www.keepassx.org/
@@ -29,7 +28,7 @@ BuildRequires:	cmake(Qt5Test)
 BuildRequires:	cmake(Qt5LinguistTools)
 BuildRequires:	cmake(Qt5X11Extras)
 BuildRequires:	pkgconfig(libgcrypt)
-BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(zlib-ng)
 BuildRequires:	pkgconfig(minizip)
 BuildRequires:	pkgconfig(libargon2)
 BuildRequires:	pkgconfig(libqrencode)
