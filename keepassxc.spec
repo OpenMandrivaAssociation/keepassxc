@@ -10,7 +10,7 @@ Release:	%{?beta:0.%{beta}.}1
 License:	GPLv2+
 Group:		File tools
 # Forked from dormant http://www.keepassx.org/
-URL:		http://www.keepassxc.org/
+URL:		https://www.keepassxc.org/
 BuildRequires:	cmake ninja
 BuildRequires:	pkgconfig(xi)
 BuildRequires:	pkgconfig(xtst)
