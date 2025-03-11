@@ -1,6 +1,6 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassxc
-Version:	2.7.9
+Version:	2.7.10
 %if ! 0%{?beta:1}
 Source0:	https://github.com/keepassxreboot/keepassxc/releases/download/%{version}/keepassxc-%{version}-src.tar.xz
 %else
@@ -35,6 +35,9 @@ BuildRequires:	pkgconfig(libqrencode)
 BuildRequires:	pkgconfig(libsodium)
 BuildRequires:	pkgconfig(botan-2)
 BuildRequires:	asciidoctor
+## The following BuildRequires added for yubikey
+BuildRequires:	pkgconfig(libpcsclite)
+BuildRequires:	pkgconfig(libusb)
 Provides:	keepass = %{version}-%{release}
 Provides:	KeePassX = %{version}-%{release}
 Provides:	KeePassXC = %{version}-%{release}
@@ -65,6 +68,7 @@ Command Line interface to the KeePassXC password manager
 %cmake_qt5 -G Ninja \
 	-DKEEPASSXC_BUILD_TYPE=Release \
 	-DWITH_XC_AUTOTYPE:BOOL=ON \
+	-DWITH_XC_YUBIKEY:BOOL=ON \
 	-DWITH_XC_BROWSER:BOOL=ON \
 	-DWITH_XC_FDOSECRETS:BOOL=ON \
 	-DWITH_XC_KEESHARE:BOOL=ON \
