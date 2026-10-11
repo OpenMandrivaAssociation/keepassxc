@@ -1,7 +1,7 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassxc
 Version:	2.7.12
-Release:	%{?beta:0.%{beta}.}1
+Release:	%{?beta:0.%{beta}.}2
 License:	GPLv2+
 Group:		File tools
 # Forked from dormant http://www.keepassx.org/
@@ -26,7 +26,7 @@ BuildRequires:		cmake(Qt5Svg)
 BuildRequires:		cmake(Qt5Widgets)
 BuildRequires:		cmake(Qt5Test)
 BuildRequires:		cmake(Qt5X11Extras)
-BuildRequires:		pkgconfig(botan-2)
+BuildRequires:		pkgconfig(botan-3)
 BuildRequires:		pkgconfig(libargon2)
 BuildRequires:		pkgconfig(libgcrypt)
 BuildRequires:		pkgconfig(libqrencode)
@@ -38,7 +38,7 @@ BuildRequires:		pkgconfig(minizip)
 BuildRequires:		pkgconfig(readline)
 BuildRequires:		pkgconfig(xi)
 BuildRequires:		pkgconfig(xtst)
-BuildRequires:		pkgconfig(zlib-ng)
+BuildRequires:		pkgconfig(zlib)
 Provides:	keepass = %{version}-%{release}
 Provides:	KeePassX = %{version}-%{release}
 Provides:	KeePassXC = %{version}-%{release}
