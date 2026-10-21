@@ -53,7 +53,6 @@ encryption algorithms currently known (AES and Twofish).
 %{_bindir}/%{name}
 %{_bindir}/%{name}-cli
 %{_bindir}/%{name}-proxy
-%{_libdir}/%{name}/
 %{_datadir}/%{name}/
 %{_datadir}/applications/org.%{name}.KeePassXC.desktop
 %{_datadir}/mime/packages/%{name}.xml
