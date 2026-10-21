@@ -1,7 +1,7 @@
 Summary:	Cross Platform Password Manager
 Name:		keepassxc
-Version:	2.7.12
-Release:	%{?beta:0.%{beta}.}2
+Version:	2.8.0
+Release:	%{?beta:0.%{beta}.}1
 License:	GPLv2+
 Group:		File tools
 # Forked from dormant http://www.keepassx.org/
@@ -12,25 +12,22 @@ Source0:	https://github.com/keepassxreboot/keepassxc/releases/download/%{version
 Source0:	https://github.com/keepassxreboot/keepassxc/archive/master/%{name}-%{version}-%{beta}.tar.gz
 %endif
 BuildRequires:		asciidoctor
-BuildRequires:		cmake >= 3.10
+BuildRequires:		cmake >= 3.16
 BuildRequires:		ninja
-BuildRequires:		qmake5
-BuildRequires:		qt5-macros
-BuildRequires:		cmake(Qt5Core)
-BuildRequires:		cmake(Qt5Concurrent)
-BuildRequires:		cmake(Qt5DBus)
-BuildRequires:		cmake(Qt5Gui)
-BuildRequires:		cmake(Qt5LinguistTools)
-BuildRequires:		cmake(Qt5Network)
-BuildRequires:		cmake(Qt5Svg)
-BuildRequires:		cmake(Qt5Widgets)
-BuildRequires:		cmake(Qt5Test)
-BuildRequires:		cmake(Qt5X11Extras)
+BuildRequires:		cmake(Qt6Core)
+BuildRequires:		cmake(Qt6Concurrent)
+BuildRequires:		cmake(Qt6DBus)
+BuildRequires:		cmake(Qt6Gui)
+BuildRequires:		cmake(Qt6LinguistTools)
+BuildRequires:		cmake(Qt6Network)
+BuildRequires:		cmake(Qt6Svg)
+BuildRequires:		cmake(Qt6SvgWidgets)
+BuildRequires:		cmake(Qt6Widgets)
+BuildRequires:		cmake(Qt6Test)
 BuildRequires:		pkgconfig(botan-3)
-BuildRequires:		pkgconfig(libargon2)
-BuildRequires:		pkgconfig(libgcrypt)
 BuildRequires:		pkgconfig(libqrencode)
-BuildRequires:		pkgconfig(libsodium)
+BuildRequires:		pkgconfig(libkeyutils)
+BuildRequires:		pkgconfig(xkbcommon)
 ## The following two BuildRequires added for yubikey support
 BuildRequires:		pkgconfig(libpcsclite)
 BuildRequires:		pkgconfig(libusb)
@@ -61,6 +58,7 @@ encryption algorithms currently known (AES and Twofish).
 %{_datadir}/applications/org.%{name}.KeePassXC.desktop
 %{_datadir}/mime/packages/%{name}.xml
 %{_datadir}/metainfo/org.%{name}.KeePassXC.appdata.xml
+%{_datadir}/polkit-1/actions/org.%{name}.KeePassXC.policy
 %{_iconsdir}/hicolor/*/apps/%{name}*.*
 %{_iconsdir}/hicolor/*/mimetypes/*.*
 %{_mandir}/man1/%{name}.1*
@@ -83,17 +81,14 @@ Command Line Interface to the KeePassXC password manager.
 %else
 %autosetup -p1
 %endif
-%cmake_qt5 -G Ninja \
+%cmake -G Ninja \
 	-DKEEPASSXC_BUILD_TYPE=Release \
-	-DWITH_XC_AUTOTYPE:BOOL=ON \
-	-DWITH_XC_YUBIKEY:BOOL=ON \
-	-DWITH_XC_BROWSER:BOOL=ON \
-	-DWITH_XC_BROWSER_PASSKEYS:BOOL=ON \
-	-DWITH_XC_FDOSECRETS:BOOL=ON \
-	-DWITH_XC_KEESHARE:BOOL=ON \
-	-DWITH_XC_NETWORKING:BOOL=ON \
-	-DWITH_XC_SSHAGENT:BOOL=ON \
-	-DWITH_XC_UPDATECHECK:BOOL=OFF
+	-DKPXC_FEATURE_BROWSER:BOOL=ON \
+	-DKPXC_FEATURE_FDOSECRETS:BOOL=ON \
+	-DKPXC_FEATURE_NETWORK:BOOL=ON \
+	-DKPXC_FEATURE_SSHAGENT:BOOL=ON \
+	-DKPXC_FEATURE_UPDATES:BOOL=OFF \
+	-DKPXC_FEATURE_DOCS:BOOL=ON
 
 
 %build
